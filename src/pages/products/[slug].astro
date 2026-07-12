@@ -221,6 +221,21 @@ const metaDesc = `${product.name}, ${col.label} line by m'Aaile — ${product.in
     </section>
   )}
 
+  <!-- COLLECTION LINEUP BAND (shared per collection) — hidden when absent -->
+  {col.lineup?.image && (
+    <section class="w-full" style="background:var(--color-canvas)">
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-16 md:pt-24 pb-12 md:pb-20">
+        {col.lineup.title && (
+          <div class="mb-8 md:mb-12">
+            <p class="eyebrow-cool mb-4">{col.label}</p>
+            <h2 class="display-sans text-3xl md:text-5xl" style="color:var(--color-charcoal)">{col.lineup.title}</h2>
+          </div>
+        )}
+        <img src={col.lineup.image} alt={`m'Aaile ${col.label} line — ${col.ingredients}`} class="w-full h-auto" style="max-height:60vh; object-fit:contain" loading="lazy" />
+      </div>
+    </section>
+  )}
+
   <!-- RELATED (same collection) — hidden when none -->
   {related.length > 0 && (
     <section style="background:var(--color-canvas)">

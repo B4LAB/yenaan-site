@@ -16,7 +16,11 @@
    "ingredientKeys": [
     "pdrn",
     "cica"
-   ]
+   ],
+   "lineup": {
+    "image": "/images/products/maaile-revital-lineup-wide.webp",
+    "title": "Complete the REVITAL Routine"
+   }
   },
   "revive": {
    "label": "REVIVE",
@@ -254,7 +258,7 @@
  "ingredients": {
   "pdrn": {
    "label": "PDRN",
-   "note": "Derived from **salmon DNA**, PDRN is widely used in Korean skincare. Across the **REVITAL** collection it is paired with **CICA** for daily **revitalizing care** and a comfortable finish.",
+   "note": "Derived from **salmon DNA**, PDRN is widely used in Korean skincare. Across m'Aaile skincare it is paired with **CICA** for daily **revitalizing care** and a comfortable finish.",
    "image": "/images/products/maaile-ingredient-pdrn-dna.webp"
   },
   "cica": {
@@ -269,7 +273,7 @@
   },
   "egf": {
    "label": "EGF",
-   "note": "A **peptide-class** ingredient featured in the **REVIVE** line, paired with hyaluronic acid for concentrated **moisture-focused care**.",
+   "note": "A skincare ingredient used in the **REVIVE** line, paired with **hyaluronic acid** for concentrated **moisture-focused care**.",
    "image": "/images/products/maaile-ingredient-egf.webp"
   }
  }

@@ -4,7 +4,7 @@
   "wordmark": "m'Aaile",
   "eyebrow": "A Yenaan Brand",
   "title": {
-   "value": "Ampoule-based skincare,\nmade in Korea."
+   "value": "Ampoule-based skincare, \nmade in Korea."
   },
   "image": "/images/maaile-hero-editorial.webp"
  },
@@ -23,7 +23,7 @@
     "name": "Revital",
     "wordmark": "REVITAL",
     "ingredients": "PDRN · CICA",
-    "image": "/images/maaile-collection-stage.webp"
+    "image": "/images/maaile-revital-lineup.webp"
    },
    {
     "name": "Revive",
