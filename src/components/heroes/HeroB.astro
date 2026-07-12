@@ -1,0 +1,22 @@
+---
+import home from '../../content/en/home.json';
+const lines = (s) => s.split('\n');
+---
+<section class="relative border-b border-line">
+  <div class="mx-auto max-w-7xl grid md:grid-cols-2 items-stretch">
+    <div class="flex items-center px-6 lg:px-14 py-20 md:py-0 md:min-h-[36rem]">
+      <div class="max-w-lg">
+        <p class="eyebrow mb-6">{home.hero.eyebrow}</p>
+        <h1 class="font-display text-4xl md:text-[3.6rem] leading-[1.08] text-ink font-medium text-left">
+          {lines(home.hero.title).map((l) => (<span class="block">{l}</span>))}
+        </h1>
+        <div class="rule-gold w-14 my-8"></div>
+        <p class="text-base md:text-lg text-ink-soft leading-relaxed text-left max-w-md">{home.hero.subtitle.value}</p>
+        <a href="#brands" class="inline-block mt-9 text-[0.74rem] tracking-[0.22em] uppercase border border-ink/40 px-7 py-3 hover:border-amber hover:text-amber transition-colors">Explore the brands</a>
+      </div>
+    </div>
+    <div class="relative min-h-[22rem] md:min-h-[36rem] overflow-hidden bg-putty/40">
+      <img src="/images/hero-collection.jpg" alt="Yenaan brands" class="absolute inset-0 w-full h-full object-cover" />
+    </div>
+  </div>
+</section>

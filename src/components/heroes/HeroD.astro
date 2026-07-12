@@ -1,0 +1,48 @@
+---
+import home from '../../content/en/home.json';
+import site from '../../content/en/site.json';
+const titleLines = home.hero.title.split('\n');
+const lastLine = titleLines[titleLines.length - 1];
+const lastWords = lastLine.split(' ');
+const lastWord = lastWords.pop();
+const lastHead = lastWords.join(' ');
+---
+<section class="relative w-full overflow-hidden" style="background:var(--color-canvas)">
+  <!-- Full-bleed editorial image dominates the fold -->
+  <!-- Mobile shows the single reclining bottle intentionally at lower-right (object-[72%_center]); desktop keeps the two-bottle right composition -->
+  <img
+    src="/images/maaile-hero-editorial.webp"
+    alt="m'Aaile Revital Ampoule Lotion and Toner, built around PDRN and CICA, on a light editorial stone set"
+    class="absolute inset-0 w-full h-full object-cover object-right"
+    fetchpriority="high" />
+  <!-- Desktop scrim (unchanged) -->
+  <div class="absolute inset-0 hidden md:block"
+       style="background:linear-gradient(90deg, rgba(244,243,238,0.94) 0%, rgba(244,243,238,0.82) 34%, rgba(244,243,238,0.15) 58%, rgba(244,243,238,0) 74%)"></div>
+  <!-- Mobile scrim: weaker (less left light) -->
+  <div class="absolute inset-0 md:hidden"
+       style="background:linear-gradient(90deg, rgba(244,243,238,0.55) 0%, rgba(244,243,238,0.42) 34%, rgba(244,243,238,0.08) 58%, rgba(244,243,238,0) 74%)"></div>
+
+  <div class="relative mx-auto max-w-6xl px-6 lg:px-10 min-h-[86vh] flex items-start md:items-center pt-24 md:pt-0">
+    <div class="max-w-2xl md:-translate-y-10">
+      <p class="eyebrow-cool mb-6">{home.hero.eyebrow}</p>
+      <h1 class="display-sans text-[2.6rem] sm:text-5xl md:text-[4.3rem]" style="color:var(--color-charcoal)">
+        {titleLines.slice(0, -1).map((l) => (<span class="block">{l}</span>))}
+        <span class="block">{lastHead} <span style="border-bottom:0.08em solid var(--color-citron); padding-bottom:0.02em; white-space:nowrap">{lastWord}</span></span>
+      </h1>
+      <p class="mt-7 text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft); max-width:34ch">
+        {home.hero.subtitle.value}
+      </p>
+      <div class="mt-9 flex items-center gap-7">
+        <a href="/#brands"
+           class="group inline-flex items-center gap-2 text-[0.78rem] tracking-[0.18em] uppercase font-semibold transition-colors text-[var(--color-citron-ink)] md:text-[var(--color-white)] md:px-7 md:py-4 md:bg-[var(--color-charcoal)]">
+          <span class="border-b-2 border-[var(--color-citron-ink)] pb-[3px] md:border-0 md:pb-0">{home.hero.cta}</span>
+          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer"
+           class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Partnership Inquiry</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+{
+ "_note": "확정 데이터 배선(v6). 효능동사 0, 설명가능 표현만. 제품명·용량·성분=박스 사실. 이미지=키워드 SEO명(홈과 동일 자산). msrp='00.00'=플레이스홀더(대표 실가 대기). pos=object-position(받침 프레임밖).",
+ "hero": {
+  "wordmark": "m'Aaile",
+  "eyebrow": "A Yenaan Brand",
+  "title": {
+   "value": "Ampoule-based skincare,\nmade in Korea."
+  },
+  "image": "/images/maaile-hero-editorial.webp"
+ },
+ "story": {
+  "eyebrow": "Brand Story",
+  "title": "Built around the ampoule.",
+  "body": {
+   "value": "m'Aaile is organized around ampoule-format skincare, formulated with ingredients such as PDRN, Centella (CICA), hyaluronic acid, and EGF. The line runs from toner and lotion through essence and ampoule, presented with a clean, considered finish."
+  }
+ },
+ "collections": {
+  "eyebrow": "Signature Collections",
+  "title": "Three lines, one language.",
+  "items": [
+   {
+    "name": "Revital",
+    "wordmark": "REVITAL",
+    "ingredients": "PDRN · CICA",
+    "image": "/images/maaile-collection-stage.webp"
+   },
+   {
+    "name": "Revive",
+    "wordmark": "REVIVE",
+    "ingredients": "Hyaluronic Acid · EGF",
+    "image": "/images/maaile-revive-hyaluronic-egf-collection.webp"
+   },
+   {
+    "name": "For Homme",
+    "wordmark": "FOR HOMME",
+    "ingredients": "PDRN · CICA",
+    "image": "/images/maaile-forhomme-all-in-one-collection.webp"
+   }
+  ]
+ },
+ "products": {
+  "_note": "제품 데이터는 products.json 정본에서 파생(중복 제거). 여기엔 섹션 카피만 유지.",
+  "eyebrow": "Featured Products",
+  "title": "A selection from the line."
+ },
+ "contact": {
+  "eyebrow": "Carry m'Aaile",
+  "title": "Interested in this brand?",
+  "body": {
+   "value": "Tell us about your market and we will follow up about carrying m'Aaile."
+  },
+  "cta": "Start a conversation"
+ }
+}

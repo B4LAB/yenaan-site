@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import {
+  allProducts,
+  collections,
+  collectionIngredients,
+  relatedProducts,
+  productWhatsApp,
+  hasCatalog,
+  catalogHref,
+} from '../../lib/products';
+
+export function getStaticPaths() {
+  return allProducts.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const col = collections[product.collection];
+const t = col.theme;
+const related = relatedProducts(product);
+const waHref = productWhatsApp(product);
+const ingredientCards = collectionIngredients(product.collection);
+const galleryAll = Array.isArray(product.gallery) ? product.gallery : [];
+const gallery = galleryAll.slice(0, 3);            // cap: wide + up to 2
+const galleryWide = gallery[0];                     // first = neutral wide
+const galleryRest = gallery.slice(1);               // 1 → centered, 2 → 2-col
+
+// Render **bold** markers from trusted copy (our own content, not user input).
+const md = (s = '') => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+// Conditional content (empty = section hidden — no invented values)
+const highlights = Array.isArray(product.highlights) ? product.highlights : [];
+
+const metaTitle = `${product.name} — m'Aaile | YENAAN`;
+const metaDesc = `${product.name}, ${col.label} line by m'Aaile — ${product.ingredients}${product.size ? `, ${product.size}` : ''}. Korean skincare, prepared for distributors and partners abroad.`;
+---
+<BaseLayout title={metaTitle} description={metaDesc}>
+  <Header />
+
+  <!-- PRODUCT HERO (collection-themed) -->
+  <section style={`background:${t.bg}; color:${t.text}`}>
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-28 md:pt-32 pb-16 md:pb-24">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-[0.72rem] tracking-[0.16em] uppercase" style={`color:${t.sub}`}>
+        <a href="/brands/maaile" class="hover:opacity-70 transition-opacity">m'Aaile</a>
+        <span class="mx-2" style={`color:${t.sub}`}>/</span>
+        <span style={`color:${t.accent}`}>{col.label}</span>
+      </nav>
+
+      <div class="grid md:grid-cols-[1fr_1fr] gap-10 md:gap-16 items-center">
+        <!-- Image -->
+        <div class="order-1 md:order-none">
+          <div class="overflow-hidden" style={`background:${t.panel}`}>
+            <img
+              src={product.image}
+              alt={`m'Aaile ${product.name} — ${product.ingredients}`}
+              class="w-full h-full object-cover aspect-[4/5]"
+              style={`object-position:${product.pos ?? '50% 50%'}`}
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="order-2 md:order-none">
+          <p class="text-[0.68rem] tracking-[0.24em] uppercase font-semibold mb-4" style={`color:${t.accent}`}>{col.label}</p>
+          <h1 class="display-sans text-4xl md:text-6xl mb-5" style={`color:${t.text}`}>{product.name}</h1>
+          <p class="text-sm tracking-[0.14em] uppercase mb-5" style={`color:${t.sub}`}>{product.ingredients}</p>
+
+          {product.shortDescription && (
+            <p class="mb-8 text-lg md:text-xl leading-relaxed" style={`color:${t.text}; max-width:26em`}>{product.shortDescription}</p>
+          )}
+
+          <!-- Spec rows -->
+          <dl class="mb-9 text-sm" style={`border-top:1px solid ${t.onDark ? 'rgba(241,242,238,0.15)' : 'var(--color-line)'}`}>
+            {product.size && (
+              <div class="flex justify-between py-3" style={`border-bottom:1px solid ${t.onDark ? 'rgba(241,242,238,0.15)' : 'var(--color-line)'}`}>
+                <dt class="tracking-[0.16em] uppercase text-[0.72rem]" style={`color:${t.sub}`}>Volume</dt>
+                <dd style={`color:${t.text}`}>{product.size}</dd>
+              </div>
+            )}
+            {product.msrp && (
+              <div class="flex justify-between py-3" style={`border-bottom:1px solid ${t.onDark ? 'rgba(241,242,238,0.15)' : 'var(--color-line)'}`}>
+                <dt class="tracking-[0.16em] uppercase text-[0.72rem]" style={`color:${t.sub}`}>MSRP</dt>
+                <dd style={`color:${t.text}`}>USD {product.msrp}</dd>
+              </div>
+            )}
+          </dl>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href={waHref} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 text-[0.74rem] tracking-[0.18em] uppercase font-semibold px-7 py-4 transition-opacity hover:opacity-90"
+               style={`background:${t.accent}; color:${t.onDark ? 'var(--color-charcoal)' : 'var(--color-white)'}`}>
+              Inquire about this product
+            </a>
+            {hasCatalog && (
+              <a href={catalogHref} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 text-[0.74rem] tracking-[0.18em] uppercase font-semibold px-7 py-4 transition-colors"
+                 style={`border:1px solid ${t.onDark ? 'rgba(241,242,238,0.4)' : 'var(--color-charcoal)'}; color:${t.text}`}>
+                Download product catalog
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT + KEY INGREDIENTS (collection-level, shared) — hidden when empty -->
+  {(col.about || ingredientCards.length > 0) && (
+    <section style="background:var(--color-white)">
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+        {col.about && (
+          <div class="max-w-3xl mb-16 md:mb-24">
+            <p class="eyebrow-cool mb-4">About {col.label}</p>
+            <p class="text-lg md:text-2xl leading-snug" style="color:var(--color-charcoal); font-weight:500" set:html={md(col.about)}></p>
+          </div>
+        )}
+        {ingredientCards.length > 0 && (
+          <div class="space-y-16 md:space-y-24">
+            <p class="eyebrow-cool">Key ingredients</p>
+            {ingredientCards.map((ing, i) => (
+              <div class="grid md:grid-cols-2 gap-8 md:gap-14 items-center">
+                <div class={`overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`} style="background:var(--color-stone)">
+                  {ing.image ? (
+                    <img src={ing.image} alt={`${ing.label} — key ingredient in m'Aaile skincare`} class="w-full h-full object-cover" style="max-height:520px" loading="lazy" />
+                  ) : (
+                    <div class="aspect-[4/5] flex items-center justify-center">
+                      <span class="wordmark text-sm" style="color:var(--color-charcoal-mute); letter-spacing:0.2em">{ing.label}</span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <p class="text-[0.72rem] tracking-[0.22em] uppercase font-semibold mb-4" style="color:var(--color-citron-ink)">{ing.label}</p>
+                  {ing.note && <p class="text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft)" set:html={md(ing.note)}></p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- USAGE (how to use) — hidden when empty -->
+  {product.usage && (
+    <section style="background:var(--color-canvas)">
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 py-12 md:py-16 flex flex-col md:flex-row md:items-baseline gap-3 md:gap-10">
+        <p class="eyebrow-cool" style="flex:none">Usage</p>
+        <p class="text-lg md:text-xl leading-snug" style="color:var(--color-charcoal); max-width:44ch">{product.usage}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- GALLERY (staged shots) — wide first, then 1 centered / 2 in a row. Max 3. Hidden when empty -->
+  {gallery.length > 0 && (
+    <section style="background:var(--color-white)">
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+        <p class="eyebrow-cool mb-6">Gallery</p>
+        <div class="overflow-hidden mb-4 md:mb-5" style="background:var(--color-stone)">
+          <img src={galleryWide} alt={`m'Aaile ${product.name} — in use`} class="w-full object-cover" style="max-height:640px; object-position:50% 28%" loading="lazy" />
+        </div>
+        {galleryRest.length > 0 && (
+          <div class={galleryRest.length === 1 ? 'flex justify-center' : 'grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5'}>
+            {galleryRest.map((src, i) => (
+              <div class={`aspect-[4/5] overflow-hidden ${galleryRest.length === 1 ? 'w-full sm:w-1/2' : ''}`} style="background:var(--color-stone)">
+                <img src={src} alt={`m'Aaile ${product.name} — staged image ${i + 2}`} class="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]" style="object-position:50% 50%" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- DETAIL BODY (light, neutral) — sections render only when data exists -->
+  {(product.description || highlights.length > 0 || product.howToUse || product.inci) && (
+    <section style="background:var(--color-white)">
+      <div class="mx-auto max-w-3xl px-6 lg:px-10 py-16 md:py-24 space-y-14">
+
+        {product.description && (
+          <div>
+            <p class="eyebrow-cool mb-4">Overview</p>
+            <p class="text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft)">{product.description}</p>
+          </div>
+        )}
+
+        {highlights.length > 0 && (
+          <div>
+            <p class="eyebrow-cool mb-4">Product details</p>
+            <ul class="space-y-3">
+              {highlights.map((h) => (
+                <li class="flex gap-3 text-base leading-relaxed" style="color:var(--color-charcoal-soft)">
+                  <span style="color:var(--color-citron-ink)">—</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {product.howToUse && (
+          <div>
+            <p class="eyebrow-cool mb-4">How to use</p>
+            <p class="text-base leading-relaxed" style="color:var(--color-charcoal-soft)">{product.howToUse}</p>
+          </div>
+        )}
+
+        {product.inci && (
+          <div>
+            <p class="eyebrow-cool mb-4">Full ingredients</p>
+            <p class="text-sm leading-relaxed" style="color:var(--color-charcoal-mute)">{product.inci}</p>
+          </div>
+        )}
+
+      </div>
+    </section>
+  )}
+
+  <!-- RELATED (same collection) — hidden when none -->
+  {related.length > 0 && (
+    <section style="background:var(--color-canvas)">
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+        <div class="mb-10 md:mb-14">
+          <p class="eyebrow-cool mb-4">More products</p>
+          <h2 class="display-sans text-3xl md:text-4xl" style="color:var(--color-charcoal)">Explore m'Aaile.</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+          {related.map((p) => (<ProductCard product={p} compact={true} />))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Footer />
+</BaseLayout>

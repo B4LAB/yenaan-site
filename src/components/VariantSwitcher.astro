@@ -1,0 +1,15 @@
+---
+const { current } = Astro.props;
+const variants = [
+  { id: 'A', label: 'A · Typography', href: '/' },
+  { id: 'B', label: 'B · Image', href: '/v/b' },
+  { id: 'C', label: 'C · Brand Stage', href: '/v/c' },
+  { id: 'D', label: 'D · Editorial 2026', href: '/v/d' },
+];
+---
+<div class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-1 bg-ink/92 backdrop-blur text-ivory rounded-full px-2 py-2 shadow-lg text-xs">
+  <span class="px-3 text-ivory/50 tracking-wide hidden sm:inline">HERO</span>
+  {variants.map((v) => (
+    <a href={v.href} class={`px-3 py-1.5 rounded-full tracking-wide transition-colors ${current === v.id ? 'bg-champagne text-ink' : 'hover:bg-ivory/10'}`}>{v.label}</a>
+  ))}
+</div>

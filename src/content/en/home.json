@@ -1,0 +1,160 @@
+{
+ "_note": "COPY v1.2 — 영문 기본(한글판 차후 ko/). 효능 단정 0. confirm:true = 대표 확정 필요. 카피 원칙: 증명 표현(has grown into/leading/trusted by/decades of) 금지, 설명 표현(creates/builds/began with/inspired by/built around) 사용. 홈 주체=YENAAN(하우스), 노출 주인공=m'Aaile. 콘텐츠 순서=브랜드→라이프스타일→성분→제품. v1.2 변경: signature(2개) 제거→featured(7종, MSRP 빈칸) / collections(마엘 3라인) 신설 / 섹션 재배치(Hero→Brands→About→Collections→Featured→Why→Partnership). MSRP·미확정 용량은 지어내지 않고 빈칸.",
+ "_seoAeoPrinciple": "모든 페이지·콘텐츠·이미지는 사람 + Google + AI + Google Images 4겹 이해 목표. Schema/AEO 사실 필드(설립연도·법인정보 등)는 대표 확정 전까지 비움. 실행은 v1.3.",
+ "_dataStatus": "v6.1: featured 7종 용량·MSRP 전부 [확인] 반영(대표 확정). 용량 6×150ml/2×110ml, MSRP USD 25/30. 카드 표기 'MSRP · USD {값}'. collections 설명 confirm:true 유지(대표 확정 대기).",
+ "hero": {
+  "eyebrow": "YENAAN — Korean Skincare Brand House",
+  "title": "Skincare for the way you live now.",
+  "subtitle": {
+   "value": "Discover m'Aaile.",
+   "confirm": false
+  },
+  "image": "/images/maaile-hero-editorial.webp",
+  "cta": "Explore m'Aaile"
+ },
+ "brandsSection": {
+  "eyebrow": "The Brand",
+  "title": "Meet m'Aaile.",
+  "_note": "SEOLSIM 미판매→렌더 제외(status!=='active'). 코드 확장성: 새 브랜드는 배열에 status:'active' 추가하면 자동 노출. '여러 브랜드' 과장 표현 제거."
+ },
+ "brands": [
+  {
+   "id": "maaile",
+   "wordmark": "m'Aaile",
+   "positioning": "Lifestyle-inspired Korean skincare",
+   "line": {
+    "value": "Ampoule-based daily skincare, built around PDRN & CICA",
+    "confirm": true
+   },
+   "image": "/images/maaile-collection-stage.webp",
+   "href": "/brands/maaile",
+   "status": "active",
+   "featured": true,
+   "theme": {
+    "cardBg": "#fbf8f2",
+    "cardText": "#1b1714",
+    "cardMuted": "#4a4239",
+    "accent": "#a9711a",
+    "wordmark": "#1b1714",
+    "mood": "modern-clean"
+   }
+  },
+  {
+   "id": "seolsim",
+   "wordmark": "Seolsim",
+   "positioning": "Korean Heritage Skincare",
+   "line": {
+    "value": "Gold herbal heritage line",
+    "confirm": true
+   },
+   "image": "/images/seolsim-heritage.jpg",
+   "href": "/#brands",
+   "status": "coming",
+   "featured": false,
+   "theme": {
+    "cardBg": "#1b1714",
+    "cardText": "#f6f1e8",
+    "cardMuted": "#a89a83",
+    "accent": "#c2a878",
+    "wordmark": "#c2a878",
+    "mood": "heritage-oriental"
+   }
+  }
+ ],
+ "about": {
+  "eyebrow": "About Yenaan",
+  "title": "A Korean skincare brand house.",
+  "body": {
+   "value": "YENAAN develops and presents its own skincare brands, each with a distinct identity for different lifestyles and markets.",
+   "confirm": true
+  }
+ },
+ "collections": {
+  "eyebrow": "Collections",
+  "title": "Explore the m'Aaile collections.",
+  "_note": "마찰② [확인]: 이 3라인은 m'Aaile 소속(하우스 YENAAN 것 아님). 하우스 홈에 브랜드 내부 라인을 펼치는 게 맞는지 대표 결정. 지금은 출하 가능 브랜드가 마엘뿐이라 실용적으로 포함.",
+  "items": [
+   {
+    "id": "revital",
+    "name": "REVITAL",
+    "ingredients": "PDRN + CICA",
+    "body": {
+     "value": "Daily skincare built around PDRN and CICA.",
+     "confirm": true
+    },
+    "image": "/images/maaile-revital-pdrn-cica-collection.webp",
+    "href": "/brands/maaile",
+    "pos": "48% 60%"
+   },
+   {
+    "id": "revive",
+    "name": "REVIVE",
+    "ingredients": "Hyaluronic Acid + EGF",
+    "body": {
+     "value": "A focused skincare line built around Hyaluronic Acid and EGF.",
+     "confirm": true
+    },
+    "image": "/images/maaile-revive-hyaluronic-egf-collection.webp",
+    "href": "/brands/maaile",
+    "pos": "60% 62%"
+   },
+   {
+    "id": "for-homme",
+    "name": "FOR HOMME",
+    "ingredients": "PDRN + CICA",
+    "body": {
+     "value": "An all-in-one skincare step for men, built around PDRN and CICA.",
+     "confirm": true
+    },
+    "image": "/images/maaile-forhomme-all-in-one-collection.webp",
+    "href": "/brands/maaile",
+    "pos": "52% 50%"
+   }
+  ]
+ },
+ "featured": {
+  "_note": "제품 데이터는 products.json 정본에서 파생(featuredProducts). 여기엔 섹션 카피만 유지.",
+  "eyebrow": "Featured Products",
+  "title": "Selected products from m'Aaile.",
+  "subtitle": {
+   "value": "Explore selected products across the m'Aaile collections.",
+   "confirm": true
+  }
+ },
+ "why": {
+  "eyebrow": "Why Work With Yenaan",
+  "title": "A direct partner for your market.",
+  "pillars": [
+   {
+    "title": "One point of contact",
+    "body": {
+     "value": "One point of contact in Korea, from first inquiry to order coordination.",
+     "confirm": true
+    }
+   },
+   {
+    "title": "Made in Korea",
+    "body": {
+     "value": "m'Aaile is developed and produced in Korea.",
+     "confirm": true
+    }
+   },
+   {
+    "title": "Your market, your fit",
+    "body": {
+     "value": "Select the products and collections that best fit your market.",
+     "confirm": true
+    }
+   }
+  ]
+ },
+ "partnership": {
+  "eyebrow": "Partnership",
+  "title": "Become a partner.",
+  "body": {
+   "value": "We welcome inquiries from distributors and business partners interested in m'Aaile. Tell us about your market and business.",
+   "confirm": true
+  },
+  "cta": "Start a conversation"
+ }
+}

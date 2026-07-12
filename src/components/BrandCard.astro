@@ -1,0 +1,49 @@
+---
+const { brand } = Astro.props;
+const isActive = brand.status === 'active';
+const hasImage = !!brand.image;
+const t = brand.theme;
+const heritage = t.mood === 'heritage-oriental';
+const pos = brand.positioning ? (typeof brand.positioning === 'string' ? brand.positioning : brand.positioning.value) : '';
+const line = typeof brand.line === 'string' ? brand.line : brand.line.value;
+const Tag = isActive ? 'a' : 'div';
+---
+<Tag
+  href={isActive ? brand.href : undefined}
+  class={`group block card-lift relative overflow-hidden border ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
+  style={`background:${t.cardBg}; color:${t.cardText}; border-color:${heritage ? 'rgba(194,168,120,0.35)' : 'var(--color-line)'};`}
+>
+  <div class="relative aspect-[4/5] overflow-hidden" style={`background:${heritage ? '#f3ead4' : 'rgba(231,222,207,0.4)'};`}>
+    {hasImage ? (
+      <img src={brand.image} alt={brand.wordmark} class="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.05]" loading="lazy" />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center">
+        <span class="wordmark text-3xl" style={`color:${t.wordmark}; opacity:0.8`}>{brand.wordmark}</span>
+      </div>
+    )}
+    {!isActive && (
+      <span class="absolute top-4 right-4 text-[0.58rem] tracking-[0.22em] uppercase px-3 py-1.5 backdrop-blur-sm" style="background:rgba(27,23,20,0.6); color:#e7decf">Coming soon</span>
+    )}
+  </div>
+
+  <div class="relative p-7" style={`background:${t.cardBg};`}>
+    {pos && <p class="text-[0.66rem] tracking-[0.26em] uppercase mb-3" style={`color:${t.accent}`}>{pos}</p>}
+    <h3 class="wordmark text-2xl" style={`letter-spacing:0.18em; color:${t.wordmark}`}>{brand.wordmark}</h3>
+    <div class="my-4" style={`height:1px; width:2.5rem; background:${t.accent}`}></div>
+
+    <!-- hover reveal: line + discover slide up -->
+    <div class="overflow-hidden">
+      <div class="md:translate-y-2 md:opacity-70 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500 ease-out">
+        <p class="text-sm" style={`color:${t.cardMuted}`}>{line}</p>
+        <p class="mt-5 text-[0.72rem] tracking-[0.22em] uppercase flex items-center gap-2" style={`color:${isActive ? t.accent : t.cardMuted}`}>
+          {isActive ? (
+            <>
+              <span>Discover</span>
+              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </>
+          ) : 'Brand page in preparation'}
+        </p>
+      </div>
+    </div>
+  </div>
+</Tag>

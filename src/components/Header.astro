@@ -1,0 +1,14 @@
+---
+import site from '../content/en/site.json';
+---
+<header class="sticky top-0 z-50 bg-ivory/85 backdrop-blur-sm border-b border-line/60">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="/" class="wordmark text-xl text-ink" style="letter-spacing:0.28em">{site.brandName}</a>
+    <nav class="hidden md:flex items-center gap-9">
+      {site.nav.map((item) => (
+        <a href={item.href} class="text-[0.8rem] tracking-[0.12em] uppercase text-ink-soft hover:text-amber transition-colors">{item.label}</a>
+      ))}
+    </nav>
+    <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-[0.72rem] tracking-[0.18em] uppercase border border-ink/30 px-4 py-2 hover:border-amber hover:text-amber transition-colors">Inquire</a>
+  </div>
+</header>

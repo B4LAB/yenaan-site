@@ -1,0 +1,42 @@
+---
+import home from '../../content/en/home.json';
+const lines = (s) => s.split('\n');
+const featured = home.brands.find((b) => b.featured) ?? home.brands[0];
+const t = featured.theme;
+const pos = typeof featured.positioning === 'string' ? featured.positioning : featured.positioning.value;
+---
+<section class="relative">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-20 text-center">
+    <p class="eyebrow mb-6">{home.hero.eyebrow}</p>
+    <h1 class="font-display text-4xl sm:text-5xl md:text-[3.9rem] leading-[1.08] text-ink font-medium">
+      {lines(home.hero.title).map((l) => (<span class="block">{l}</span>))}
+    </h1>
+    <p class="mx-auto max-w-xl text-base md:text-lg text-ink-soft leading-relaxed mt-7">{home.hero.subtitle.value}</p>
+  </div>
+
+  <!-- Brand stage: the hero itself presents the lead brand -->
+  <div class="mx-auto max-w-5xl px-6 lg:px-10 pb-8">
+    <a href={featured.href} class="group block card-lift relative overflow-hidden border border-line">
+      <div class="grid md:grid-cols-2 items-stretch" style={`background:${t.cardBg};`}>
+        <div class="relative min-h-[18rem] md:min-h-[24rem] overflow-hidden bg-putty/40">
+          <img src="/images/hero-collection.jpg" alt={featured.wordmark} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]" />
+        </div>
+        <div class="flex items-center px-8 md:px-12 py-12">
+          <div class="text-left">
+            <p class="text-[0.66rem] tracking-[0.26em] uppercase mb-3" style={`color:${t.accent}`}>{pos}</p>
+            <h2 class="wordmark text-4xl md:text-5xl" style={`letter-spacing:0.14em; color:${t.wordmark}`}>{featured.wordmark}</h2>
+            <div class="my-5" style={`height:1px; width:3rem; background:${t.accent}`}></div>
+            <p class="text-sm md:text-base" style={`color:${t.cardMuted}`}>{typeof featured.line === 'string' ? featured.line : featured.line.value}</p>
+            <p class="mt-7 text-[0.74rem] tracking-[0.22em] uppercase flex items-center gap-2" style={`color:${t.accent}`}>
+              <span>Discover</span>
+              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <p class="text-center text-[0.72rem] tracking-[0.22em] uppercase text-muted mt-8">
+      <a href="#brands" class="hover:text-amber transition-colors">See all brands ↓</a>
+    </p>
+  </div>
+</section>

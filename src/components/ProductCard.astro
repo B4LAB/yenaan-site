@@ -1,0 +1,27 @@
+---
+const { product, compact = false } = Astro.props;
+const size = typeof product.size === 'string' ? product.size : (product.size?.value ?? '');
+const msrp = typeof product.msrp === 'string' ? product.msrp : (product.msrp?.value ?? '');
+const href = product.href ?? (product.slug ? `/products/${product.slug}` : '#');
+const collectionLabel = product.collectionLabel ?? product.collection;
+const pad = compact ? 'p-4' : 'p-6';
+const nameSize = compact ? 'text-lg' : 'text-2xl';
+---
+<a href={href} class="group card-lift block border border-line bg-paper">
+  <div class="aspect-[4/5] overflow-hidden bg-putty/30">
+    <img
+      src={product.image}
+      alt={product.name}
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      style={`object-position:${product.pos ?? '50% 50%'}`}
+      loading="lazy"
+    />
+  </div>
+  <div class={pad}>
+    <p class="text-[0.62rem] tracking-[0.22em] uppercase text-amber mb-2">{collectionLabel}</p>
+    <h3 class={`font-sans font-semibold ${nameSize} text-ink leading-tight`}>{product.name}</h3>
+    <p class="mt-2 text-xs text-ink-soft">{product.ingredients}</p>
+    {size && size !== '—' && <p class="mt-1 text-xs text-muted">{size}</p>}
+    {msrp && <p class="mt-2 text-xs text-amber">MSRP · USD {msrp}</p>}
+  </div>
+</a>

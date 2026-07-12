@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts (no Google CDN dependency) */
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/hanken-grotesk/300.css";
+@import "@fontsource/hanken-grotesk/400.css";
+@import "@fontsource/hanken-grotesk/500.css";
+@import "@fontsource/hanken-grotesk/600.css";
+@import "@fontsource/hanken-grotesk/700.css";
+@import "@fontsource/hanken-grotesk/800.css";
+
+/* ── Design tokens ─────────────────────────────────────────────
+   Palette pulled from the products themselves:
+   ivory = white boxes · amber = ampoule serum · champagne = gold foil */
+@theme {
+  /* v3 — cool off-white system (D language, now global). Warm ivory retired;
+     only the m'Aaile logo keeps a serif. Do NOT return to yellow ivory. */
+  --color-ink: #141414;
+  --color-ink-soft: #646660;
+  --color-muted: #8d8d87;
+  --color-ivory: #f4f3ee;        /* page canvas (Hero) — half-step warmer */
+  --color-paper: #fcfcfa;        /* white surface */
+  --color-amber: #5e6812;        /* legacy accent slot → olive (text/number) */
+  --color-amber-deep: #171817;   /* legacy dark slot → charcoal */
+  --color-champagne: #c7d62f;    /* legacy gold slot → citron (duller) */
+  --color-putty: #ecebe6;        /* stone / soft band */
+  --color-line: #d7d9d4;
+
+  /* explicit v3 names */
+  --color-canvas: #f4f3ee;
+  --color-white: #fcfcfa;
+  --color-stone: #ecebe6;
+  --color-charcoal: #171817;
+  --color-charcoal-soft: #66645f;
+  --color-charcoal-mute: #8d8d87;
+  --color-citron: #c7d62f;
+  --color-citron-ink: #5e6812;   /* olive — numbers, quiet accents */
+  --color-hairline: #d7d9d4;
+
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+}
+
+/* Big modern grotesque display (Hero D headline) — replaces thin serif */
+.display-sans {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+.eyebrow-cool {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-charcoal-soft);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* House signature: wide-tracked wordmark, echoing the box typography */
+.wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-amber);
+}
+.rule-gold {
+  height: 1px;
+  background: var(--color-champagne);
+}
+
+/* Quiet hover lift for cards */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+              box-shadow 0.5s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-lift { transition: none; }
+  .card-lift:hover { transform: none; }
+}
+
+/* Keyboard focus */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}

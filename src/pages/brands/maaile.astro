@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import m from '../../content/en/maaile.json';
+import site from '../../content/en/site.json';
+import { allProducts } from '../../lib/products';
+
+const lines = (s) => s.split('\n');
+---
+<BaseLayout title="m'Aaile — A Yenaan Brand" description="Ampoule-based skincare, made in Korea.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="relative bg-paper border-b border-line overflow-hidden">
+    <div class="grid items-center md:grid-cols-[42fr_58fr]">
+      <div class="pt-20 pb-12 md:py-28 pr-6 lg:pr-16" style="padding-left:max(1.5rem, calc((100vw - 72rem)/2 + 2.5rem))">
+        <p class="eyebrow mb-5">{m.hero.eyebrow}</p>
+        <h1 class="wordmark text-5xl md:text-6xl text-ink mb-8" style="letter-spacing:0.12em">{m.hero.wordmark}</h1>
+        <div class="rule-gold w-14 mb-8"></div>
+        <p class="font-display text-2xl md:text-3xl text-ink-soft leading-snug text-left">
+          {lines(m.hero.title.value).map((l) => (<span class="block">{l}</span>))}
+        </p>
+      </div>
+      <div class="relative w-full h-80 md:h-[600px] overflow-hidden" style="background:var(--color-canvas)">
+        <!-- PC: video + bright still overlapped, identical crop; fade to still when video ends -->
+        <video id="maaileHeroVid" class="hidden md:block absolute inset-0 w-full h-full object-cover" style="object-position:55% 50%" autoplay muted playsinline preload="metadata" poster="/images/maaile-revital-pdrn-cica-collection.webp">
+          <source src="/videos/maaile-brand-loop.mp4" type="video/mp4" />
+        </video>
+        <img id="maaileHeroEnd" class="hidden md:block absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 pointer-events-none" style="object-position:55% 50%" src="/images/maaile-revital-pdrn-cica-collection.webp" alt="m'Aaile Revital collection" />
+        <!-- Mobile: bright still -->
+        <img class="md:hidden absolute inset-0 w-full h-full object-cover" style="object-position:55% 50%" src="/images/maaile-revital-pdrn-cica-collection.webp" alt="m'Aaile Revital collection" />
+      </div>
+      <script>
+        const _v = document.getElementById('maaileHeroVid');
+        const _e = document.getElementById('maaileHeroEnd');
+        if (_v && _e) _v.addEventListener('ended', () => { _e.style.opacity = '1'; });
+      </script>
+    </div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section class="mx-auto max-w-3xl px-6 lg:px-10 py-20 md:py-28 text-center">
+    <p class="eyebrow mb-5">{m.story.eyebrow}</p>
+    <h2 class="font-display text-3xl md:text-5xl text-ink mb-8">{m.story.title}</h2>
+    <p class="text-base md:text-lg text-ink-soft leading-relaxed text-left sm:text-center">{m.story.body.value}</p>
+  </section>
+
+  <!-- SIGNATURE COLLECTIONS -->
+  <section class="bg-ink text-ivory">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-20 md:py-28">
+      <div class="mb-12 md:mb-16">
+        <p class="eyebrow mb-4">{m.collections.eyebrow}</p>
+        <h2 class="font-display text-3xl md:text-5xl">{m.collections.title}</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        {m.collections.items.map((c) => (
+          <div class="group card-lift relative overflow-hidden border border-ivory/15">
+            <div class="aspect-[3/4] overflow-hidden">
+              <img src={c.image} alt={c.name} class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
+            </div>
+            <div class="absolute inset-0 flex flex-col justify-end p-7 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent">
+              <p class="wordmark text-xl text-ivory mb-2" style="letter-spacing:0.2em">{c.wordmark}</p>
+              <p class="text-[0.74rem] tracking-[0.18em] uppercase text-champagne">{c.ingredients}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="mx-auto max-w-6xl px-6 lg:px-10 py-20 md:py-28">
+    <div class="mb-12 md:mb-16">
+      <p class="eyebrow mb-4">{m.products.eyebrow}</p>
+      <h2 class="font-display text-3xl md:text-5xl text-ink">{m.products.title}</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {allProducts.map((p) => (<ProductCard product={p} />))}
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="bg-amber-deep text-ivory">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 py-24 md:py-32 text-center">
+      <p class="eyebrow mb-5" style="color:var(--color-champagne)">{m.contact.eyebrow}</p>
+      <h2 class="font-display text-4xl md:text-6xl mb-7">{m.contact.title}</h2>
+      <p class="mx-auto max-w-lg text-ivory/80 leading-relaxed mb-10">{m.contact.body.value}</p>
+      <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="inline-block bg-ivory text-ink text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 hover:bg-champagne transition-colors">
+        {m.contact.cta}
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

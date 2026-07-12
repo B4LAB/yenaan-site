@@ -1,0 +1,276 @@
+{
+ "_note": "★ 제품 단일 정본(v6.3). 홈/마엘/상세/관련/링크 파생. collection=머신키. featured/order=홈 노출·정렬. gallery/shortDescription(정체성)+usage(사용법)/description/inci 등 빈 값이면 상세에서 해당 섹션 자동 비노출(지어내기 금지). ingredients=성분 딕셔너리(1회 작성·전 제품 공유). 성분 note=(A)설명형 '중간형' 카피—hydration/soothing/revitalizing 등 소비자 표현 허용, 치료·재생보장·임상 확정형 제외, 대표 수정·확정 대상. 성분 image·detailImage=슬롯 비움(대표 제공 예정). gallery=연출컷 리네임 배선(studio 우선, 파랑/water 액센트). whatsappText=제품별 문의.",
+ "collections": {
+  "revital": {
+   "label": "REVITAL",
+   "ingredients": "PDRN · CICA",
+   "theme": {
+    "bg": "var(--color-white)",
+    "panel": "var(--color-canvas)",
+    "text": "var(--color-charcoal)",
+    "sub": "var(--color-charcoal-soft)",
+    "accent": "var(--color-citron-ink)",
+    "onDark": false
+   },
+   "about": "**REVITAL** is built around daily care, formulated with **PDRN** and **CICA** for lightweight **hydration** and a comfortable, revitalizing finish.",
+   "ingredientKeys": [
+    "pdrn",
+    "cica"
+   ]
+  },
+  "revive": {
+   "label": "REVIVE",
+   "ingredients": "Hyaluronic Acid · EGF",
+   "theme": {
+    "bg": "#f7efe2",
+    "panel": "#f3ead9",
+    "text": "#5a3a1f",
+    "sub": "#7a5a3a",
+    "accent": "#8a4a1a",
+    "onDark": false
+   },
+   "about": "**REVIVE** is a **moisture-focused** line, formulated with **hyaluronic acid** and **EGF** for a plump, hydrated skin feel.",
+   "ingredientKeys": [
+    "ha",
+    "egf"
+   ]
+  },
+  "for-homme": {
+   "label": "FOR HOMME",
+   "ingredients": "PDRN · CICA",
+   "theme": {
+    "bg": "var(--color-charcoal)",
+    "panel": "#20211f",
+    "text": "#f1f2ee",
+    "sub": "#b9bab2",
+    "accent": "var(--color-citron)",
+    "onDark": true
+   },
+   "about": "**FOR HOMME** is an **all-in-one** step, formulated with **PDRN** and **CICA** for a simple daily routine with a clean, comfortable finish.",
+   "ingredientKeys": [
+    "pdrn",
+    "cica"
+   ]
+  }
+ },
+ "items": [
+  {
+   "slug": "ampoule-toner",
+   "brand": "m'Aaile",
+   "collection": "revital",
+   "collectionLabel": "Revital",
+   "name": "Ampoule Toner",
+   "ingredients": "PDRN · CICA",
+   "size": "150ml",
+   "msrp": "25",
+   "image": "/images/maaile-revital-ampoule-toner-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 1,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Ampoule Toner. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-revital-model.webp",
+    "/images/products/maaile-ampoule-toner-studio-01.webp",
+    "/images/products/maaile-ampoule-toner-pump.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A refreshing toner that preps skin with lightweight daily moisture.",
+   "usage": "After cleansing, apply to the face and gently pat until absorbed."
+  },
+  {
+   "slug": "ampoule-essence",
+   "brand": "m'Aaile",
+   "collection": "revital",
+   "collectionLabel": "Revital",
+   "name": "Ampoule Essence",
+   "ingredients": "PDRN · CICA",
+   "size": "150ml",
+   "msrp": "30",
+   "image": "/images/maaile-revital-ampoule-essence-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 2,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Ampoule Essence. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-revital-model.webp",
+    "/images/products/maaile-ampoule-essence-studio-01.webp",
+    "/images/products/maaile-ampoule-essence-pump.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A soft, nourishing essence for smooth and comfortable daily care.",
+   "usage": "After toner, apply an appropriate amount and pat until absorbed."
+  },
+  {
+   "slug": "ampoule-mist",
+   "brand": "m'Aaile",
+   "collection": "revital",
+   "collectionLabel": "Revital",
+   "name": "Ampoule Mist",
+   "ingredients": "PDRN · CICA",
+   "size": "150ml",
+   "msrp": "25",
+   "image": "/images/maaile-revital-ampoule-mist-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 3,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Ampoule Mist. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-ampoule-mist-model.webp",
+    "/images/products/maaile-ampoule-mist-studio-01.webp",
+    "/images/products/maaile-ampoule-mist-pump.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A fine moisture mist for a quick, refreshing reset anytime.",
+   "usage": "Hold 15–20cm from the face and mist as needed through the day."
+  },
+  {
+   "slug": "ampoule-lotion",
+   "brand": "m'Aaile",
+   "collection": "revital",
+   "collectionLabel": "Revital",
+   "name": "Ampoule Lotion",
+   "ingredients": "PDRN · CICA",
+   "size": "150ml",
+   "msrp": "25",
+   "image": "/images/maaile-revital-ampoule-lotion-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 4,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Ampoule Lotion. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-revital-model.webp",
+    "/images/products/maaile-ampoule-lotion-pump.webp",
+    "/images/products/maaile-ampoule-lotion-soft-blue.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A lightweight lotion that leaves skin soft and comfortably moisturized.",
+   "usage": "As the last step, apply an appropriate amount and spread evenly."
+  },
+  {
+   "slug": "revital-ampoule",
+   "brand": "m'Aaile",
+   "collection": "revital",
+   "collectionLabel": "Revital",
+   "name": "Revital Ampoule",
+   "ingredients": "PDRN · CICA",
+   "size": "110ml",
+   "msrp": "30",
+   "image": "/images/maaile-revital-ampoule-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 5,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Revital Ampoule. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-revital-model.webp",
+    "/images/products/maaile-revital-ampoule-studio-01.webp",
+    "/images/products/maaile-revital-ampoule-water.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A concentrated daily ampoule for hydrated, revitalized-looking skin.",
+   "usage": "Apply a small amount before lotion over the face or areas needing focused care."
+  },
+  {
+   "slug": "lifting-ampoule",
+   "brand": "m'Aaile",
+   "collection": "revive",
+   "collectionLabel": "Revive",
+   "name": "Lifting Ampoule",
+   "ingredients": "Hyaluronic Acid · EGF",
+   "size": "110ml",
+   "msrp": "30",
+   "image": "/images/maaile-revive-lifting-ampoule-hyaluronic-egf.webp",
+   "pos": "50% 0%",
+   "featured": true,
+   "order": 6,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile Lifting Ampoule. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-lifting-ampoule-model.webp",
+    "/images/products/maaile-lifting-ampoule-wood-set-01.webp",
+    "/images/products/maaile-lifting-ampoule-wood-set-02.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "A rich moisture ampoule for smoother, firmer-looking skin.",
+   "usage": "After toner or essence, apply a small amount and pat gently until absorbed."
+  },
+  {
+   "slug": "all-in-one",
+   "brand": "m'Aaile",
+   "collection": "for-homme",
+   "collectionLabel": "For Homme",
+   "name": "All in One",
+   "ingredients": "PDRN · CICA",
+   "size": "150ml",
+   "msrp": "30",
+   "image": "/images/maaile-forhomme-all-in-one-pdrn-cica.webp",
+   "pos": "50% 2%",
+   "featured": true,
+   "order": 7,
+   "description": "",
+   "howToUse": "",
+   "inci": "",
+   "highlights": [],
+   "whatsappText": "Hello, I'm interested in the m'Aaile All in One. Please send me more information about partnership and ordering.",
+   "detailImage": "",
+   "gallery": [
+    "/images/products/maaile-all-in-one-model.webp",
+    "/images/products/maaile-all-in-one-studio-01.webp",
+    "/images/products/maaile-all-in-one-studio-02.webp"
+   ],
+   "modelWide": true,
+   "shortDescription": "One simple step for fresh, comfortable daily care.",
+   "usage": "After cleansing, apply an appropriate amount over the whole face."
+  }
+ ],
+ "ingredients": {
+  "pdrn": {
+   "label": "PDRN",
+   "note": "Derived from **salmon DNA**, PDRN is widely used in Korean skincare. Across the **REVITAL** collection it is paired with **CICA** for daily **revitalizing care** and a comfortable finish.",
+   "image": "/images/products/maaile-ingredient-pdrn-dna.webp"
+  },
+  "cica": {
+   "label": "CICA",
+   "note": "**Centella asiatica** — known in Korea as **CICA** — carries plant components such as madecassoside. It runs through the m'Aaile line for a calm, **soothing** daily routine.",
+   "image": "/images/products/maaile-ingredient-cica-centella.webp"
+  },
+  "ha": {
+   "label": "Hyaluronic Acid",
+   "note": "A **hydration**-focused ingredient central to the **REVIVE** line, formulated for a plump, moisturized skin feel in daily **moisture-focused care**.",
+   "image": "/images/products/maaile-ingredient-hyaluronic-acid.webp"
+  },
+  "egf": {
+   "label": "EGF",
+   "note": "A **peptide-class** ingredient featured in the **REVIVE** line, paired with hyaluronic acid for concentrated **moisture-focused care**.",
+   "image": "/images/products/maaile-ingredient-egf.webp"
+  }
+ }
+}

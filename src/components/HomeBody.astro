@@ -1,0 +1,144 @@
+---
+import BrandCard from './BrandCard.astro';
+import ProductCard from './ProductCard.astro';
+import home from '../content/en/home.json';
+import site from '../content/en/site.json';
+import { featuredProducts } from '../lib/products';
+const activeBrands = home.brands.filter((b) => b.status === 'active');
+const single = activeBrands.length === 1 ? activeBrands[0] : null;
+const singlePos = single ? (typeof single.positioning === 'string' ? single.positioning : single.positioning.value) : '';
+const singleLine = single ? (typeof single.line === 'string' ? single.line : single.line.value) : '';
+// Collection colour-coding: REVITAL light glass / REVIVE amber / FOR HOMME dark
+const colTheme = {
+  revital:   { bg: 'var(--color-white)',    text: 'var(--color-charcoal)',   sub: 'var(--color-charcoal-soft)', accent: 'var(--color-citron-ink)' },
+  revive:    { bg: '#f3ead9',               text: '#5a3a1f',                 sub: '#7a5a3a',                    accent: '#8a4a1a' },
+  'for-homme': { bg: 'var(--color-charcoal)', text: '#f1f2ee',               sub: '#b9bab2',                    accent: 'var(--color-citron)' },
+};
+---
+<!-- THE BRAND (m'Aaile — single active brand) -->
+<section id="brands" class="scroll-mt-20" style="background:var(--color-stone)">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-16 md:pt-24 pb-8 md:pb-12">
+    <div>
+      <p class="eyebrow-cool mb-4">{home.brandsSection.eyebrow}</p>
+      <h2 class="display-sans text-3xl md:text-5xl" style="color:var(--color-charcoal)">{home.brandsSection.title}</h2>
+    </div>
+  </div>
+  {single ? (
+      <a href={single.href} class="group grid md:grid-cols-[58fr_42fr] items-stretch overflow-hidden w-full" style="background:var(--color-white)">
+        <div class="relative min-h-[20rem] md:min-h-[34rem] overflow-hidden" style="background:var(--color-stone)">
+          <img src="/images/maaile-collection-stage.webp" alt={`${single.wordmark} Korean skincare collection`} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]" loading="lazy" />
+        </div>
+        <div class="flex items-center px-6 md:px-14 lg:px-20 py-14 md:py-12">
+          <div>
+            <p class="text-[0.66rem] tracking-[0.24em] uppercase mb-3 font-semibold" style="color:var(--color-charcoal-mute)">{singlePos}</p>
+            <h3 class="font-display" style="font-size:clamp(2.6rem,5vw,3.6rem); letter-spacing:0.02em; color:var(--color-charcoal)">{single.wordmark}</h3>
+            <p class="mt-4 text-sm md:text-base leading-relaxed" style="color:var(--color-charcoal-soft); max-width:40ch">{singleLine}</p>
+            <p class="mt-7 text-[0.74rem] tracking-[0.18em] uppercase font-semibold flex items-center gap-2" style="color:var(--color-charcoal)">
+              <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Discover the brand</span>
+              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </p>
+          </div>
+        </div>
+      </a>
+    ) : (
+      <div class="mx-auto max-w-6xl px-6 lg:px-10 pb-16 md:pb-24 grid sm:grid-cols-2 gap-6 md:gap-8">{activeBrands.map((brand) => (<BrandCard brand={brand} />))}</div>
+    )}
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="scroll-mt-20" style="background:var(--color-white)">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-20 md:pt-28 pb-14 md:pb-20 grid md:grid-cols-[0.9fr_1.1fr] gap-12 md:gap-20 items-center">
+    <div>
+      <p class="eyebrow-cool mb-4">{home.about.eyebrow}</p>
+      <h2 class="display-sans text-3xl md:text-[2.8rem]" style="color:var(--color-charcoal); line-height:1.05">{home.about.title}</h2>
+    </div>
+    <p class="text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft)">{home.about.body.value}</p>
+  </div>
+</section>
+
+<!-- KOREAN MOOD BAND — breather, reinforces "Korean" after the About statement -->
+<section aria-label="Korean craft still life" class="w-full overflow-hidden" style="background:var(--color-canvas)">
+  <img
+    src="/images/yenaan-korean-heritage-mood.webp"
+    alt="Korean still life — a white moon jar, brass vessel and hanji paper in soft daylight"
+    class="w-full h-[34vh] md:h-[48vh] object-cover"
+    style="object-position:50% 60%"
+    loading="lazy"
+  />
+</section>
+
+<!-- COLLECTIONS (m'Aaile lines, colour-coded) -->
+<section id="collections" class="scroll-mt-20" style="background:var(--color-canvas)">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+    <div class="mb-10 md:mb-14">
+      <p class="eyebrow-cool mb-4">{home.collections.eyebrow}</p>
+      <h2 class="display-sans text-3xl md:text-5xl" style="color:var(--color-charcoal)">{home.collections.title}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+      {home.collections.items.map((c) => {
+        const th = colTheme[c.id] ?? colTheme.revital;
+        return (
+          <a href={c.href} class="group card-lift block overflow-hidden" style={`background:${th.bg}`}>
+            <div class="aspect-[4/3] overflow-hidden" style="background:var(--color-stone)">
+              <img src={c.image} alt={`m'Aaile ${c.name} collection — ${c.ingredients}`} class="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]" style={c.pos ? `object-position:${c.pos}` : undefined} loading="lazy" />
+            </div>
+            <div class="p-7">
+              <h3 class="display-sans text-xl" style={`color:${th.text}`}>{c.name}</h3>
+              <p class="mt-2 text-[0.66rem] tracking-[0.22em] uppercase font-semibold" style={`color:${th.accent}`}>{c.ingredients}</p>
+              <p class="mt-4 text-sm leading-relaxed" style={`color:${th.sub}`}>{c.body.value}</p>
+              <p class="mt-5 text-[0.72rem] tracking-[0.2em] uppercase font-semibold flex items-center gap-2" style={`color:${th.accent}`}>
+                <span>View collection</span>
+                <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section id="products" class="scroll-mt-20" style="background:var(--color-white)">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+    <div class="mb-10 md:mb-14 max-w-2xl">
+      <p class="eyebrow-cool mb-4">{home.featured.eyebrow}</p>
+      <h2 class="display-sans text-3xl md:text-5xl" style="color:var(--color-charcoal)">{home.featured.title}</h2>
+      <p class="mt-4 leading-relaxed" style="color:var(--color-charcoal-soft)">{home.featured.subtitle.value}</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 md:gap-5">
+      {featuredProducts.map((p) => (<ProductCard product={p} compact={true} />))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="scroll-mt-20" style="background:var(--color-canvas)">
+  <div class="mx-auto max-w-6xl px-6 lg:px-10 py-20 md:py-28">
+    <div class="mb-12 md:mb-16 max-w-2xl">
+      <p class="eyebrow-cool mb-4">{home.why.eyebrow}</p>
+      <h2 class="display-sans text-3xl md:text-5xl" style="color:var(--color-charcoal)">{home.why.title}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10 md:gap-12">
+      {home.why.pillars.map((p, i) => (
+        <div>
+          <p class="display-sans text-5xl mb-4" style="color:var(--color-citron-ink)">{String(i + 1).padStart(2, '0')}</p>
+          <h3 class="text-lg font-semibold tracking-wide mb-3" style="color:var(--color-charcoal)">{p.title}</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--color-charcoal-soft)">{p.body.value}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP (dark) -->
+<section id="partnership" class="scroll-mt-20" style="background:var(--color-charcoal); color:#f1f2ee">
+  <div class="mx-auto max-w-3xl px-6 lg:px-10 py-24 md:py-32 text-center">
+    <p class="text-[0.72rem] tracking-[0.22em] uppercase font-semibold mb-5" style="color:var(--color-citron)">{home.partnership.eyebrow}</p>
+    <h2 class="display-sans text-4xl md:text-6xl mb-7" style="color:#f5f5f1">{home.partnership.title}</h2>
+    <p class="mx-auto max-w-xl leading-relaxed mb-10" style="color:#b9bab2">{home.partnership.body.value}</p>
+    <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="inline-block text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 font-semibold transition-colors" style="background:var(--color-citron); color:var(--color-charcoal)">
+      {home.partnership.cta}
+    </a>
+  </div>
+</section>
