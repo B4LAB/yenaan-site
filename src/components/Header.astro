@@ -4,11 +4,74 @@ import site from '../content/en/site.json';
 <header class="sticky top-0 z-50 bg-ivory/85 backdrop-blur-sm border-b border-line/60">
   <div class="mx-auto max-w-6xl px-6 lg:px-10 h-16 flex items-center justify-between">
     <a href="/" class="wordmark text-xl text-ink" style="letter-spacing:0.28em">{site.brandName}</a>
+
+    <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-9">
       {site.nav.map((item) => (
         <a href={item.href} class="text-[0.8rem] tracking-[0.12em] uppercase text-ink-soft hover:text-amber transition-colors">{item.label}</a>
       ))}
     </nav>
-    <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-[0.72rem] tracking-[0.18em] uppercase border border-ink/30 px-4 py-2 hover:border-amber hover:text-amber transition-colors">Inquire</a>
+
+    <div class="flex items-center gap-3">
+      <!-- INQUIRE always visible -->
+      <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-[0.72rem] tracking-[0.18em] uppercase border border-ink/30 px-4 py-2 hover:border-amber hover:text-amber transition-colors">Inquire</a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="navToggle"
+        type="button"
+        class="md:hidden inline-flex items-center justify-center w-9 h-9 text-ink"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+      >
+        <svg id="navIconOpen" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="navIconClose" class="hidden" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
+
+  <!-- Mobile dropdown -->
+  <nav id="mobileNav" class="hidden md:hidden border-t border-line/60 bg-ivory/95 backdrop-blur-sm">
+    <div class="mx-auto max-w-6xl px-6 py-2">
+      {site.nav.map((item) => (
+        <a href={item.href} data-nav-link class="block py-3 text-[0.82rem] tracking-[0.14em] uppercase text-ink-soft border-b border-line/40 last:border-0">{item.label}</a>
+      ))}
+    </div>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('mobileNav');
+  const iconOpen = document.getElementById('navIconOpen');
+  const iconClose = document.getElementById('navIconClose');
+
+  const setOpen = (open) => {
+    menu.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+  };
+
+  toggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(menu.classList.contains('hidden'));
+  });
+
+  // Close when a menu link is tapped
+  menu?.querySelectorAll('[data-nav-link]').forEach((a) =>
+    a.addEventListener('click', () => setOpen(false))
+  );
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('hidden')) return;
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>

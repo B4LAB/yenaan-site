@@ -41,6 +41,9 @@
  },
  "whatsapp": {
   "display": "+82 10 6543 7947",
-  "href": "https://wa.me/821065437947?text=Hi%20YENAAN%2C%20I%27d%20like%20to%20inquire%20about%20a%20partnership."
- }
+  "number": "821065437947",
+  "href": "https://wa.me/821065437947?text=Hello%2C%20I%27m%20interested%20in%20a%20partnership%20with%20YENAAN.%20Please%20share%20more%20information."
+ },
+ "_catalogNote": "카탈로그 PDF 완성 후 경로 지정(예: /catalogs/maaile-product-catalog.pdf). 비어있으면 다운로드 버튼 자동 숨김(Coming soon 미노출).",
+ "catalog": ""
 }
