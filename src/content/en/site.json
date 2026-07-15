@@ -3,7 +3,7 @@
  "brandName": "YENAAN",
  "legalName": {
   "value": "YENAAN COSMETICS CO., LTD.",
-  "confirm": true
+  "confirm": false
  },
  "nav": [
   {
@@ -15,8 +15,12 @@
    "href": "/#collections"
   },
   {
+   "label": "Catalogue",
+   "href": "/catalogue"
+  },
+  {
    "label": "Partnership",
-   "href": "/#partnership"
+   "href": "/partnership"
   },
   {
    "label": "About",
@@ -24,7 +28,7 @@
   },
   {
    "label": "Contact",
-   "href": "/#contact"
+   "href": "/contact"
   }
  ],
  "tagline": {
@@ -32,8 +36,10 @@
   "confirm": true
  },
  "contact": {
-  "_note": "연락처 = WhatsApp + email + 주소. 전화 미노출(대표 확정 v6.1). 주소='일단' 값(대표 재확정 여지). address.display=사이트 노출(영문), address.ko=참조·스키마용.",
+  "_note": "연락처 = WhatsApp + email + 주소. 전화 미노출(대표 확정 v6.1). 주소 확정. address.display=사이트 노출(영문), address.ko=참조·스키마용.",
   "email": "hsbong7@gmail.com",
+  "web3formsKey": "e986b4c7-3b49-437d-9862-17b4922523cd",
+  "_web3formsNote": "Web3Forms Access Key(UUID). Form Setup 화면에서 복사해 붙여넣기. 비어있으면 /contact 폼 전송 실패.",
   "address": {
    "display": "159, Sagimakgol-ro, Jungwon-gu, Seongnam-si, Gyeonggi-do, Republic of Korea",
    "ko": "경기도 성남시 중원구 사기막골로 159 (상대원동, 금강하이테크밸리2차)"
@@ -44,6 +50,6 @@
   "number": "821065437947",
   "href": "https://wa.me/821065437947?text=Hello%2C%20I%27m%20interested%20in%20a%20partnership%20with%20YENAAN.%20Please%20share%20more%20information."
  },
- "_catalogNote": "카탈로그 PDF 완성 후 경로 지정(예: /catalogs/maaile-product-catalog.pdf). 비어있으면 다운로드 버튼 자동 숨김(Coming soon 미노출).",
- "catalog": ""
+ "_catalogNote": "카탈로그 PDF 경로. public/catalogues/ 에 파일 두고 여기 경로 지정. 비어있으면 다운로드 버튼 자동 숨김.",
+ "catalog": "/catalogues/maaile-catalogue.pdf"
 }

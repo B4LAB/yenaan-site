@@ -1,0 +1,22 @@
+# YENAAN — https://yenaan.com
+
+# Search crawlers — allowed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI search (surfacing in ChatGPT search) — allowed
+User-agent: OAI-SearchBot
+Allow: /
+
+# AI model training — blocked
+User-agent: GPTBot
+Disallow: /
+
+# Default
+User-agent: *
+Allow: /
+
+Sitemap: https://yenaan.com/sitemap-index.xml

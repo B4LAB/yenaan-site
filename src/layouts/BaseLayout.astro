@@ -1,7 +1,49 @@
 ---
 import '../styles/global.css';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-const { title, description } = Astro.props;
+import site from '../content/en/site.json';
+
+const {
+  title,
+  description,
+  image = '/og-default.png',
+  type = 'website',
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://yenaan.com');
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL(image, siteUrl).href;
+
+// Global entity signals (help Google + AI understand who YENAAN is)
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'YENAAN',
+  legalName: site.legalName.value,
+  url: siteUrl.href,
+  logo: new URL('/og-default.png', siteUrl).href,
+  image: ogImage,
+  description:
+    "YENAAN is a Korean skincare brand house offering its skincare brands and finished products for international wholesale and distribution.",
+  email: site.contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '159, Sagimakgol-ro, Jungwon-gu',
+    addressLocality: 'Seongnam-si',
+    addressRegion: 'Gyeonggi-do',
+    addressCountry: 'KR',
+  },
+  brand: { '@type': 'Brand', name: "m'Aaile" },
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'YENAAN',
+  url: siteUrl.href,
+};
+const schemas = [orgSchema, websiteSchema, ...jsonLd];
 ---
 <!doctype html>
 <html lang="en">
@@ -10,7 +52,32 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
+    <meta name="theme-color" content="#F4F3EE" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="YENAAN" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {schemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body>
     <slot />

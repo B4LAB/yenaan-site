@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../content/en/site.json';
+import { collections } from '../lib/products';
+
+const md = (s = '') => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const colOrder = ['revital', 'revive', 'for-homme'];
+
+const audience = [
+  { t: 'Importers', d: 'For companies sourcing finished Korean skincare products for local market entry.' },
+  { t: 'Distributors', d: 'For regional partners with established sales networks and market experience.' },
+  { t: 'Retailers', d: 'For beauty retailers, specialty stores and concept stores seeking differentiated skincare collections.' },
+  { t: 'Online Sellers', d: 'For e-commerce operators and digital beauty platforms serving local consumers.' },
+];
+const steps = [
+  { n: '01', t: 'Tell us about your business', d: 'Share your company, country, sales channels, products of interest and estimated order quantity.' },
+  { n: '02', t: 'Product and market review', d: 'We review your inquiry, target market, product interests and potential partnership scope.' },
+  { n: '03', t: 'Commercial discussion', d: 'Following our review, we share relevant product information, wholesale pricing guidance and next-step details.' },
+  { n: '04', t: 'Partnership preparation', d: 'Once terms are aligned, we proceed with product selection, documentation, ordering and market preparation.' },
+];
+const include = [
+  'Company name and website', 'Country and target market', 'Sales channels',
+  'Products of interest', 'Estimated order quantity', 'Expected launch timing',
+  'Relevant import or distribution experience',
+];
+
+const title = 'Korean Skincare Wholesale & Distribution Partnership | YENAAN';
+const description =
+  "Explore Korean skincare wholesale and distribution opportunities with YENAAN. Discover m'Aaile collections for importers, distributors, retailers and global business partners.";
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Partnership', item: new URL('/partnership', Astro.site).href },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+  <Header />
+
+  <!-- HERO -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-20 md:pt-28 pb-14 md:pb-20">
+      <p class="eyebrow mb-5">Partnership</p>
+      <h1 class="display-sans text-4xl md:text-6xl" style="color:var(--color-charcoal); line-height:1.02; max-width:18ch">Korean Skincare for Global Distribution</h1>
+      <p class="mt-7 text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft); max-width:56ch">
+        YENAAN works with importers, distributors, retailers and business partners seeking distinctive Korean skincare brands for their market.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-5">
+        <a href="/contact" class="inline-block text-[0.78rem] tracking-[0.2em] uppercase font-semibold px-8 py-4" style="background:var(--color-charcoal); color:var(--color-white)">Submit a partnership inquiry</a>
+        <a href="/catalogue" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">View catalogue</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE WORK WITH -->
+  <section style="background:var(--color-white); border-top:1px solid var(--color-line)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+      <p class="eyebrow mb-4">Who we work with</p>
+      <h2 class="display-sans text-3xl md:text-4xl mb-4" style="color:var(--color-charcoal)">For global beauty partners.</h2>
+      <p class="text-base leading-relaxed mb-10 md:mb-14" style="color:var(--color-charcoal-soft); max-width:60ch">
+        We welcome partnership inquiries from businesses looking to introduce Korean skincare products through established retail, distribution and online sales channels.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {audience.map((a) => (
+          <div class="p-6" style="background:var(--color-canvas)">
+            <h3 class="text-lg font-semibold mb-2" style="color:var(--color-charcoal)">{a.t}</h3>
+            <p class="text-sm leading-relaxed" style="color:var(--color-charcoal-soft)">{a.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YENAAN OFFERS -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16 items-start">
+      <div>
+        <p class="eyebrow mb-4">What YENAAN offers</p>
+        <h2 class="display-sans text-3xl md:text-4xl" style="color:var(--color-charcoal); line-height:1.05">A Korean skincare brand house.</h2>
+      </div>
+      <div>
+        <p class="text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft)">
+          YENAAN develops and presents its own skincare brands, each created with a distinct identity, product direction and market position. Our current portfolio includes m'Aaile, a Korean skincare brand featuring ampoule-based daily care across REVITAL, REVIVE and FOR HOMME collections.
+        </p>
+        <p class="mt-5 text-base leading-relaxed font-semibold" style="color:var(--color-charcoal)">
+          YENAAN offers its skincare brands and finished products for international wholesale and distribution.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section style="background:var(--color-white); border-top:1px solid var(--color-line)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+      <p class="eyebrow mb-4">Collections</p>
+      <h2 class="display-sans text-3xl md:text-4xl mb-10 md:mb-14" style="color:var(--color-charcoal)">Explore the m'Aaile collections.</h2>
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        {colOrder.map((key) => {
+          const c = collections[key];
+          return (
+            <a href="/brands/maaile" class="group block p-7 transition-colors" style="background:var(--color-canvas)">
+              <p class="text-[0.7rem] tracking-[0.22em] uppercase font-semibold mb-2" style="color:var(--color-citron-ink)">{c.label}</p>
+              <p class="text-[0.72rem] tracking-[0.16em] uppercase mb-4" style="color:var(--color-charcoal-mute)">{c.ingredients}</p>
+              <p class="text-sm leading-relaxed" style="color:var(--color-charcoal-soft)" set:html={md(c.about)} />
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERSHIP PROCESS -->
+  <section style="background:var(--color-charcoal); color:#f1f2ee">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+      <p class="text-[0.72rem] tracking-[0.22em] uppercase font-semibold mb-4" style="color:var(--color-citron)">Partnership process</p>
+      <h2 class="display-sans text-3xl md:text-4xl mb-12 md:mb-16" style="color:#f5f5f1">A clear path from inquiry to market.</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+        {steps.map((s) => (
+          <div>
+            <p class="font-display text-3xl mb-3" style="color:var(--color-citron)">{s.n}</p>
+            <h3 class="text-base font-semibold mb-2" style="color:#f5f5f1">{s.t}</h3>
+            <p class="text-sm leading-relaxed" style="color:#b9bab2">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO INCLUDE -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16 items-start">
+      <div>
+        <p class="eyebrow mb-4">Your inquiry</p>
+        <h2 class="display-sans text-3xl md:text-4xl" style="color:var(--color-charcoal); line-height:1.05">Help us understand your market.</h2>
+        <p class="mt-5 text-base leading-relaxed" style="color:var(--color-charcoal-soft)">To review your inquiry efficiently, please include:</p>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+        {include.map((i) => (
+          <li class="flex items-start gap-3 text-base" style="color:var(--color-charcoal-soft)">
+            <span style="color:var(--color-citron-ink); font-weight:700">—</span>
+            <span>{i}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--color-white); border-top:1px solid var(--color-line)">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 py-20 md:py-28 text-center">
+      <h2 class="display-sans text-3xl md:text-5xl mb-6" style="color:var(--color-charcoal)">Let's discuss your market.</h2>
+      <p class="mx-auto max-w-xl leading-relaxed mb-9" style="color:var(--color-charcoal-soft)">Tell us which products you are interested in and how you plan to introduce them in your market. Our team will review your inquiry and respond with the most relevant information.</p>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="/contact" class="inline-block text-[0.78rem] tracking-[0.2em] uppercase font-semibold px-9 py-4" style="background:var(--color-charcoal); color:var(--color-white)">Submit a partnership inquiry</a>
+        <a href="/catalogue" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">View catalogue</span>
+        </a>
+        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal-soft)">
+          <span style="border-bottom:2px solid var(--color-charcoal-soft); padding-bottom:3px">Chat on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

@@ -34,10 +34,32 @@ const md = (s = '') => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 // Conditional content (empty = section hidden — no invented values)
 const highlights = Array.isArray(product.highlights) ? product.highlights : [];
 
-const metaTitle = `${product.name} — m'Aaile | YENAAN`;
-const metaDesc = `${product.name}, ${col.label} line by m'Aaile — ${product.ingredients}${product.size ? `, ${product.size}` : ''}. Korean skincare, prepared for distributors and partners abroad.`;
+const metaTitle = `m'Aaile ${product.name} | ${product.ingredients} Korean Skincare`;
+const metaDesc = `m'Aaile ${product.name} — ${col.label} line, ${product.ingredients}${product.size ? `, ${product.size}` : ''}. Korean skincare available for wholesale and distribution to importers, distributors and retailers abroad.`;
+
+// JSON-LD — Product (no Offer/price: this is a B2B brand site, not a checkout), Brand, Breadcrumb
+const productUrl = new URL(`/products/${product.slug}`, Astro.site).href;
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `m'Aaile ${product.name}`,
+  image: new URL(product.image, Astro.site).href,
+  description: product.shortDescription || `${product.name} by m'Aaile — ${product.ingredients}.`,
+  brand: { '@type': 'Brand', name: "m'Aaile" },
+  category: `Korean skincare — ${col.label}`,
+  url: productUrl,
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: "m'Aaile", item: new URL('/brands/maaile', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: product.name, item: productUrl },
+  ],
+};
 ---
-<BaseLayout title={metaTitle} description={metaDesc}>
+<BaseLayout title={metaTitle} description={metaDesc} type="product" image={product.image} jsonLd={[productSchema, breadcrumbSchema]}>
   <Header />
 
   <!-- PRODUCT HERO (collection-themed) -->

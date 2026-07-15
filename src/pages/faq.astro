@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Single source: visible Q&A and FAQPage schema are generated from this list.
+const faqs = [
+  {
+    q: 'Does YENAAN offer Korean skincare products for wholesale?',
+    a: 'Yes. YENAAN offers finished Korean skincare products from its own brand portfolio for international wholesale and distribution.',
+  },
+  {
+    q: 'Can I distribute m\u2019Aaile in my country?',
+    a: 'Distribution opportunities are reviewed based on the target market, sales channels, business experience and expected order scope. Please submit a partnership inquiry with your company and market information.',
+  },
+  {
+    q: 'Who can apply for a partnership?',
+    a: 'YENAAN welcomes inquiries from importers, distributors, retailers, e-commerce operators and other beauty business partners.',
+  },
+  {
+    q: 'How can I request wholesale pricing?',
+    a: 'Wholesale pricing is provided after reviewing your company, target country, products of interest, sales channels and estimated order quantity.',
+  },
+  {
+    q: 'Does the public catalogue include wholesale pricing?',
+    a: 'No. The public catalogue provides brand and product information only. Wholesale pricing and specific commercial terms are provided separately after reviewing a partnership inquiry.',
+  },
+  {
+    q: 'Where can I download the product catalogue?',
+    a: 'The current m\u2019Aaile product catalogue can be viewed and downloaded from the Catalogue page and the partnership inquiry page.',
+  },
+  {
+    q: 'What information should I include in my inquiry?',
+    a: 'Please include your company name, country, website, sales channels, products of interest, estimated quantity and expected launch timing. More detail helps us review your inquiry more accurately.',
+  },
+  {
+    q: 'Are samples available?',
+    a: 'Sample availability and related costs are reviewed according to the product, destination and inquiry details. Please include your sample request in the inquiry form.',
+  },
+  {
+    q: 'What products are currently available?',
+    a: 'The current m\u2019Aaile portfolio includes five REVITAL products formulated with PDRN and CICA, the REVIVE Lifting Ampoule with hyaluronic acid and EGF, and the FOR HOMME All in One.',
+  },
+  {
+    q: 'How long does it take to receive a response?',
+    a: 'We normally review business inquiries within one to two business days. Response time may vary depending on the market and information required.',
+  },
+  {
+    q: 'Can I contact YENAAN through WhatsApp?',
+    a: 'Yes. WhatsApp is available for quick questions and product-specific inquiries. For detailed partnership discussions, we recommend using the inquiry form.',
+  },
+  {
+    q: 'Are the products made in Korea?',
+    a: 'Yes. The m\u2019Aaile products presented on this website are Korean skincare products made in Korea. Product-specific information is available on each detail page and in the catalogue.',
+  },
+];
+
+const title = 'Korean Skincare Wholesale & Distribution FAQ | YENAAN';
+const description =
+  "Find answers about m'Aaile wholesale, international distribution, catalogue access, product inquiries and partnership opportunities with YENAAN.";
+
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'FAQ', item: new URL('/faq', Astro.site).href },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[faqSchema, breadcrumb]}>
+  <Header />
+
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 pt-20 md:pt-28 pb-20 md:pb-28">
+      <p class="eyebrow mb-5">FAQ</p>
+      <h1 class="display-sans text-4xl md:text-5xl" style="color:var(--color-charcoal); line-height:1.05">Partnership FAQ</h1>
+      <p class="mt-6 text-base leading-relaxed" style="color:var(--color-charcoal-soft); max-width:58ch">
+        Answers to common questions from importers, distributors, retailers and international business partners.
+      </p>
+
+      <div class="mt-12 flex flex-col gap-8">
+        {faqs.map((f) => (
+          <div style="border-top:1px solid var(--color-line); padding-top:1.75rem">
+            <h2 class="text-lg md:text-xl font-semibold mb-3" style="color:var(--color-charcoal)">{f.q}</h2>
+            <p class="text-base leading-relaxed" style="color:var(--color-charcoal-soft)">{f.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 pt-8 flex flex-wrap items-center gap-5" style="border-top:1px solid var(--color-line)">
+        <a href="/contact" class="inline-block text-[0.78rem] tracking-[0.2em] uppercase font-semibold px-8 py-4" style="background:var(--color-charcoal); color:var(--color-white)">Submit a partnership inquiry</a>
+        <a href="/partnership" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Partnership &amp; distribution</span>
+        </a>
+        <a href="/catalogue" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Catalogue</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

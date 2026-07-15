@@ -3,13 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import MaaileLogo from '../../components/MaaileLogo.astro';
 import m from '../../content/en/maaile.json';
 import site from '../../content/en/site.json';
 import { allProducts } from '../../lib/products';
 
 const lines = (s) => s.split('\n');
+// Keep the m'Aaile wordmark in its logo casing even inside all-caps eyebrows
+const contactEyebrowSegs = m.contact.eyebrow.split(/m'Aaile/i);
 ---
-<BaseLayout title="m'Aaile — A Yenaan Brand" description="Ampoule-based skincare, made in Korea.">
+<BaseLayout title="m'Aaile — Korean Skincare Brand for Wholesale & Distribution | YENAAN" description="m'Aaile is a Korean skincare brand available for international wholesale and distribution. Ampoule-based skincare across REVITAL, REVIVE and FOR HOMME, built around PDRN, CICA, hyaluronic acid and EGF.">
   <Header />
 
   <!-- HERO -->
@@ -17,7 +20,7 @@ const lines = (s) => s.split('\n');
     <div class="grid items-center md:grid-cols-[42fr_58fr]">
       <div class="pt-20 pb-12 md:py-28 pr-6 lg:pr-16" style="padding-left:max(1.5rem, calc((100vw - 72rem)/2 + 2.5rem))">
         <p class="eyebrow mb-5">{m.hero.eyebrow}</p>
-        <h1 class="wordmark text-5xl md:text-6xl text-ink mb-8" style="letter-spacing:0.12em">{m.hero.wordmark}</h1>
+        <h1 class="text-ink mb-8"><MaaileLogo style="height:clamp(2.9rem,6vw,4.1rem);width:auto;display:block" /></h1>
         <div class="rule-gold w-14 mb-8"></div>
         <p class="font-display text-2xl md:text-3xl text-ink-soft leading-snug text-left">
           {lines(m.hero.title.value).map((l) => (<span class="block">{l}</span>))}
@@ -84,10 +87,10 @@ const lines = (s) => s.split('\n');
   <!-- CONTACT CTA -->
   <section class="bg-amber-deep text-ivory">
     <div class="mx-auto max-w-3xl px-6 lg:px-10 py-24 md:py-32 text-center">
-      <p class="eyebrow mb-5" style="color:var(--color-champagne)">{m.contact.eyebrow}</p>
+      <p class="eyebrow mb-5" style="color:var(--color-champagne)">{contactEyebrowSegs.map((seg, i) => (<Fragment>{seg}{i < contactEyebrowSegs.length - 1 && <span style="text-transform:none;letter-spacing:0.01em">m'Aaile</span>}</Fragment>))}</p>
       <h2 class="font-display text-4xl md:text-6xl mb-7">{m.contact.title}</h2>
       <p class="mx-auto max-w-lg text-ivory/80 leading-relaxed mb-10">{m.contact.body.value}</p>
-      <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="inline-block bg-ivory text-ink text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 hover:bg-champagne transition-colors">
+      <a href="/contact" class="inline-block bg-ivory text-ink text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 hover:bg-champagne transition-colors">
         {m.contact.cta}
       </a>
     </div>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../content/en/site.json';
+import { allProducts, collections, productHref, catalogHref, hasCatalog } from '../lib/products';
+
+const colOrder = ['revital', 'revive', 'for-homme'];
+const grouped = colOrder.map((key) => ({
+  key,
+  label: collections[key].label,
+  ingredients: collections[key].ingredients,
+  items: allProducts.filter((p) => p.collection === key),
+}));
+const findItems = [
+  'Collection concepts', 'Product descriptions', 'Key ingredients',
+  'Usage guidance', 'Product volumes and specifications', 'Partnership and contact information',
+];
+
+const title = "m'Aaile Korean Skincare Product Catalogue | YENAAN";
+const description =
+  "Download the official m'Aaile product catalogue from YENAAN. Explore REVITAL, REVIVE and FOR HOMME Korean skincare collections for wholesale and distribution.";
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Catalogue', item: new URL('/catalogue', Astro.site).href },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+  <Header />
+
+  <!-- HERO -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 pt-20 md:pt-28 pb-12 md:pb-16">
+      <p class="eyebrow mb-5">Product Catalogue</p>
+      <h1 class="display-sans text-4xl md:text-6xl" style="color:var(--color-charcoal); line-height:1.02">m'Aaile Product Catalogue</h1>
+      <p class="mt-6 text-base md:text-lg leading-relaxed" style="color:var(--color-charcoal-soft); max-width:58ch">
+        Discover the complete m'Aaile portfolio, including collection concepts, product descriptions, key ingredients, usage guidance and product specifications.
+      </p>
+      {hasCatalog && (
+        <div class="mt-9">
+          <a href={catalogHref} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[0.78rem] tracking-[0.2em] uppercase font-semibold px-8 py-4" style="background:var(--color-charcoal); color:var(--color-white)">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+            Download PDF
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- BANNER (editorial: model + full REVITAL lineup) -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 pb-2 md:pb-6">
+      <img src="/images/maaile-catalogue-hero.webp" alt="m'Aaile Korean skincare — model with the REVITAL PDRN and CICA ampoule lineup" class="w-full h-auto" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- INCLUDED COLLECTIONS -->
+  <section style="background:var(--color-white); border-top:1px solid var(--color-line)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24">
+      <p class="eyebrow mb-4">Inside the catalogue</p>
+      <h2 class="display-sans text-3xl md:text-4xl mb-10 md:mb-14" style="color:var(--color-charcoal)">Collections included.</h2>
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        {grouped.map((g) => (
+          <div class="p-7" style="background:var(--color-canvas)">
+            <p class="text-[0.7rem] tracking-[0.22em] uppercase font-semibold mb-1" style="color:var(--color-citron-ink)">{g.label}</p>
+            <p class="text-[0.72rem] tracking-[0.16em] uppercase mb-5" style="color:var(--color-charcoal-mute)">{g.ingredients}</p>
+            <ul class="space-y-2.5">
+              {g.items.map((p) => (
+                <li>
+                  <a href={productHref(p)} class="text-sm transition-opacity hover:opacity-60" style="color:var(--color-charcoal)">{p.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL FIND -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-6xl px-6 lg:px-10 py-16 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16 items-start">
+      <div>
+        <p class="eyebrow mb-4">What you'll find</p>
+        <h2 class="display-sans text-3xl md:text-4xl" style="color:var(--color-charcoal); line-height:1.05">Product information for your business review.</h2>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+        {findItems.map((i) => (
+          <li class="flex items-start gap-3 text-base" style="color:var(--color-charcoal-soft)">
+            <span style="color:var(--color-citron-ink); font-weight:700">—</span>
+            <span>{i}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- BUYER NOTE -->
+  <section style="background:var(--color-white); border-top:1px solid var(--color-line)">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 py-16 md:py-20 text-center">
+      <h2 class="display-sans text-2xl md:text-3xl mb-5" style="color:var(--color-charcoal)">Looking for wholesale information?</h2>
+      <p class="mx-auto max-w-2xl text-base leading-relaxed" style="color:var(--color-charcoal-soft)">
+        Wholesale pricing and commercial terms are provided separately after reviewing your company information, target market, products of interest and estimated order quantity.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 py-20 md:py-28 text-center">
+      <h2 class="display-sans text-3xl md:text-5xl mb-6" style="color:var(--color-charcoal)">Interested in carrying m'Aaile?</h2>
+      <p class="mx-auto max-w-lg leading-relaxed mb-9" style="color:var(--color-charcoal-soft)">Submit your company information, target market, products of interest and estimated order quantity.</p>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="/contact" class="inline-block text-[0.78rem] tracking-[0.2em] uppercase font-semibold px-9 py-4" style="background:var(--color-charcoal); color:var(--color-white)">Submit an inquiry</a>
+        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-[0.78rem] tracking-[0.16em] uppercase font-semibold" style="color:var(--color-charcoal)">
+          <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Chat on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

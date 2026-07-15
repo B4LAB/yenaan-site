@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../content/en/site.json';
+
+const sections = [
+  {
+    h: 'What we collect',
+    p: `When you submit our inquiry form, we collect the information you provide: your company or distributor name, contact name, email address, country, WhatsApp number (optional), the products or brands you're interested in, an estimated quantity, and your message.`,
+  },
+  {
+    h: 'Why we collect it',
+    p: `We use this information only to respond to your inquiry and to discuss a potential business or distribution relationship. We do not use it for advertising.`,
+  },
+  {
+    h: 'How your submission is handled',
+    p: `Our inquiry form is processed by Web3Forms, a third-party form-to-email service, which delivers your submission to our business email. Web3Forms temporarily stores submissions on its servers before automatic deletion. We receive and keep your inquiry by email only as long as needed to respond and manage the relationship.`,
+  },
+  {
+    h: 'Sharing',
+    p: `We do not sell your information. It is shared only with the service providers needed to operate this site and receive your message, or where required by law.`,
+  },
+  {
+    h: 'Your choices',
+    p: `You can ask us to access, correct, or delete the information you have sent us. To make a request, email us at the address below.`,
+  },
+];
+---
+<BaseLayout
+  title="Privacy Policy | YENAAN"
+  description="How YENAAN collects and uses the information you submit through our inquiry form."
+>
+  <Header />
+
+  <section style="background:var(--color-canvas)">
+    <div class="mx-auto max-w-3xl px-6 lg:px-10 pt-20 md:pt-28 pb-20 md:pb-28">
+      <p class="eyebrow mb-5">Privacy</p>
+      <h1 class="display-sans text-4xl md:text-5xl" style="color:var(--color-charcoal); line-height:1.05">Privacy Policy</h1>
+      <p class="mt-6 text-base leading-relaxed" style="color:var(--color-charcoal-soft)">
+        This notice explains how {site.legalName.value} ("YENAAN", "we") handles the information you submit through this website.
+      </p>
+
+      <div class="mt-12 flex flex-col gap-9">
+        {sections.map((s) => (
+          <div>
+            <h2 class="text-[0.72rem] tracking-[0.2em] uppercase font-semibold mb-3" style="color:var(--color-charcoal-mute)">{s.h}</h2>
+            <p class="text-base leading-relaxed" style="color:var(--color-charcoal-soft)">{s.p}</p>
+          </div>
+        ))}
+
+        <div>
+          <h2 class="text-[0.72rem] tracking-[0.2em] uppercase font-semibold mb-3" style="color:var(--color-charcoal-mute)">Contact</h2>
+          <p class="text-base leading-relaxed" style="color:var(--color-charcoal-soft)">
+            For any question or request about your information, contact us at
+            <a href={`mailto:${site.contact.email}`} class="underline hover:opacity-70" style="color:var(--color-ink)">{site.contact.email}</a>.
+          </p>
+          <p class="mt-2 text-base leading-relaxed" style="color:var(--color-charcoal-soft)">{site.contact.address.display}</p>
+        </div>
+      </div>
+
+      <div class="mt-14 pt-8" style="border-top:1px solid var(--color-line)">
+        <a href="/contact" class="text-[0.76rem] tracking-[0.18em] uppercase font-semibold inline-flex items-center gap-2 hover:opacity-70" style="color:var(--color-ink)">
+          <span style="border-bottom:2px solid var(--color-ink); padding-bottom:3px">Back to contact</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

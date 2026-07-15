@@ -42,7 +42,12 @@ const activeBrands = home.brands.filter((b) => b.status === 'active');
       </div>
       <div>
         <p class="text-[0.72rem] tracking-[0.22em] uppercase font-semibold mb-4" style="color:rgba(241,242,238,0.5)">Partnership</p>
-        <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="text-sm transition-opacity hover:opacity-70" style="color:rgba(241,242,238,0.75)">Become a partner →</a>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/partnership" class="transition-opacity hover:opacity-70" style="color:rgba(241,242,238,0.75)">Distribution &amp; wholesale</a></li>
+          <li><a href="/catalogue" class="transition-opacity hover:opacity-70" style="color:rgba(241,242,238,0.75)">Catalogue</a></li>
+          <li><a href="/faq" class="transition-opacity hover:opacity-70" style="color:rgba(241,242,238,0.75)">FAQ</a></li>
+          <li><a href="/contact" class="transition-opacity hover:opacity-70" style="color:rgba(241,242,238,0.75)">Become a partner →</a></li>
+        </ul>
       </div>
     </div>
 

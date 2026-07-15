@@ -1,6 +1,7 @@
 ---
 import BrandCard from './BrandCard.astro';
 import ProductCard from './ProductCard.astro';
+import MaaileLogo from './MaaileLogo.astro';
 import home from '../content/en/home.json';
 import site from '../content/en/site.json';
 import { featuredProducts } from '../lib/products';
@@ -31,7 +32,7 @@ const colTheme = {
         <div class="flex items-center px-6 md:px-14 lg:px-20 py-14 md:py-12">
           <div>
             <p class="text-[0.66rem] tracking-[0.24em] uppercase mb-3 font-semibold" style="color:var(--color-charcoal-mute)">{singlePos}</p>
-            <h3 class="font-display" style="font-size:clamp(2.6rem,5vw,3.6rem); letter-spacing:0.02em; color:var(--color-charcoal)">{single.wordmark}</h3>
+            <h3 class="mb-0" style="color:var(--color-charcoal)"><MaaileLogo style="height:clamp(2.4rem,4.6vw,3.2rem);width:auto;display:block" /></h3>
             <p class="mt-4 text-sm md:text-base leading-relaxed" style="color:var(--color-charcoal-soft); max-width:40ch">{singleLine}</p>
             <p class="mt-7 text-[0.74rem] tracking-[0.18em] uppercase font-semibold flex items-center gap-2" style="color:var(--color-charcoal)">
               <span style="border-bottom:2px solid var(--color-charcoal); padding-bottom:3px">Discover the brand</span>
@@ -137,7 +138,7 @@ const colTheme = {
     <p class="text-[0.72rem] tracking-[0.22em] uppercase font-semibold mb-5" style="color:var(--color-citron)">{home.partnership.eyebrow}</p>
     <h2 class="display-sans text-4xl md:text-6xl mb-7" style="color:#f5f5f1">{home.partnership.title}</h2>
     <p class="mx-auto max-w-xl leading-relaxed mb-10" style="color:#b9bab2">{home.partnership.body.value}</p>
-    <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" class="inline-block text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 font-semibold transition-colors" style="background:var(--color-citron); color:var(--color-charcoal)">
+    <a href="/contact" class="inline-block text-[0.76rem] tracking-[0.2em] uppercase px-9 py-4 font-semibold transition-colors" style="background:var(--color-citron); color:var(--color-charcoal)">
       {home.partnership.cta}
     </a>
   </div>
